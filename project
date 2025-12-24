@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GearZone – Industrial Gears & Bearings</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+}
+
+/* HEADER */
+header {
+    background: #131921;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff9900;
+}
+
+.search-bar input {
+    width: 400px;
+    padding: 8px;
+    border: none;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background: #ff9900;
+    border: none;
+    cursor: pointer;
+}
+
+.cart {
+    cursor: pointer;
+}
+
+/* CATEGORIES */
+.categories {
+    background: #232f3e;
+    padding: 10px;
+    color: white;
+}
+
+.categories span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+/* PRODUCTS */
+.container {
+    padding: 20px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 14px;
+    color: #555;
+}
+
+.product button {
+    width: 100%;
+    padding: 8px;
+    background: #ff9900;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CART */
+.cart-box {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background: white;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.cart-box.active {
+    right: 0;
+}
+
+.cart-box h2 {
+    margin-top: 0;
+}
+
+.cart-item {
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">GearZone</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search gears, bearings, modules, sizes...">
+        <button>Search</button>
+    </div>
+    <div class="cart" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+</header>
+
+<!-- CATEGORIES -->
+<div class="categories">
+    <span>⚙️ Gears</span>
+    <span>🔩 Bearings</span>
+    <span>🏭 Industrial Parts</span>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+<div class="products">
+
+    <!-- GEARS -->
+    <div class="product">
+        <img src="https://2.imimg.com/data2/PT/JW/MY-2552251/bevel-worm-spur-gear-500x500.jpg">
+        <h3>Spur Gear</h3>
+        <p>Module: 1–6 | Dia: 20–120mm<br>Material: Steel</p>
+        <p><strong>₹1,200</strong></p>
+        <button onclick="addToCart('Spur Gear')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://www.ptsmake.com/wp-content/uploads/2025/09/ptsmake2025.09.11-1516Precision-Gear-Set.webp">
+        <h3>Helical Gear</h3>
+        <p>Module: 2–8 | Alloy Steel</p>
+        <p><strong>₹2,500</strong></p>
+        <button onclick="addToCart('Helical Gear')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP784q4I6LrDpI0tJXza-PPKbmbcFOCwxUbA&s">
+        <h3>Bevel Gear</h3>
+        <p>Straight / Spiral | 45°–90°</p>
+        <p><strong>₹3,200</strong></p>
+        <button onclick="addToCart('Bevel Gear')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkvkdws-RcTz6Pss8zMmNTCAQSe5s4ThRdyA&s">
+        <h3>Worm Gear</h3>
+        <p>High Reduction Ratio | Bronze</p>
+        <p><strong>₹4,800</strong></p>
+        <button onclick="addToCart('Worm Gear')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2021/1/LJ/LB/WY/41849323/rack-and-pinion-gear.JPG">
+        <h3>Rack & Pinion</h3>
+        <p>Linear Motion | Hardened Steel</p>
+        <p><strong>₹3,000</strong></p>
+        <button onclick="addToCart('Rack & Pinion')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://smcgears.com/wp-content/uploads/2020/10/planetary-reducer.jpg">
+        <h3>Planetary Gear Set</h3>
+        <p>Compact | High Torque</p>
+        <p><strong>₹6,500</strong></p>
+        <button onclick="addToCart('Planetary Gear Set')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2021/4/DU/PW/JN/78857276/timing-gear.jpg">
+        <h3>Timing Gear</h3>
+        <p>Precision Engine Gear</p>
+        <p><strong>₹2,200</strong></p>
+        <button onclick="addToCart('Timing Gear')">Add to Cart</button>
+    </div>
+
+    <!-- BEARINGS -->
+    <div class="product">
+        <img src="https://media.rs-online.com/F2075398-01.jpg">
+        <h3>Ball Bearing</h3>
+        <p>10–100mm | Low Friction</p>
+        <p><strong>₹800</strong></p>
+        <button onclick="addToCart('Ball Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_214,q_auto,w_380/c_pad,h_214,w_380/Y2346859-01?pgw=1">
+        <h3>Roller Bearing</h3>
+        <p>Heavy Load Applications</p>
+        <p><strong>₹1,800</strong></p>
+        <button onclick="addToCart('Roller Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://media.rs-online.com/F2080084-01.jpg">
+        <h3>Tapered Roller Bearing</h3>
+        <p>Axial + Radial Load</p>
+        <p><strong>₹2,400</strong></p>
+        <button onclick="addToCart('Tapered Roller Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrQdzdWrqu1qyqxj2-i_XnEqFcqgp_k9uvrw&s">
+        <h3>Needle Bearing</h3>
+        <p>Compact | High Capacity</p>
+        <p><strong>₹1,500</strong></p>
+        <button onclick="addToCart('Needle Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://www.scheererbearing.com/wp-content/uploads/2022/11/thrust-ball-bearings-w-taper.jpg">
+        <h3>Thrust Bearing</h3>
+        <p>Axial Load Only</p>
+        <p><strong>₹1,200</strong></p>
+        <button onclick="addToCart('Thrust Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://cdn.moglix.com/p/IqBpwhjgwmhxk-xxlarge.jpg">
+        <h3>Spherical Roller Bearing</h3>
+        <p>Self-aligning</p>
+        <p><strong>₹3,800</strong></p>
+        <button onclick="addToCart('Spherical Roller Bearing')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://m.media-amazon.com/images/I/713SMbKTqRL.jpg">
+        <h3>Pillow Block Bearing</h3>
+        <p>Mounted Bearing Unit</p>
+        <p><strong>₹2,600</strong></p>
+        <button onclick="addToCart('Pillow Block Bearing')">Add to Cart</button>
+    </div>
+
+</div>
+</div>
+
+<!-- CART -->
+<div class="cart-box" id="cartBox">
+    <button class="close-btn" onclick="toggleCart()">Close</button>
+    <h2>GearZone Cart</h2>
+    <div id="cartItems"></div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+let cart = [];
+
+function addToCart(product) {
+    cart.push(product);
+    document.getElementById("cartCount").innerText = cart.length;
+    renderCart();
+}
+
+function toggleCart() {
+    document.getElementById("cartBox").classList.toggle("active");
+}
+
+function renderCart() {
+    let cartItems = document.getElementById("cartItems");
+    cartItems.innerHTML = "";
+    cart.forEach((item, index) => {
+        cartItems.innerHTML += `<div class="cart-item">${index + 1}. ${item}</div>`;
+    });
+}
+</script>
+
+</body>
+</html>
